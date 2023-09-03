@@ -30,6 +30,21 @@ export class AuthService {
     return {
       ...user,
       accessToken: this.jwtService.sign(payload),
+      // Expira en 1 minuto
+      refreshToken: this.jwtService.sign(payload, {expiresIn: '7d'})
+      // Expira en 7 dias
+    };
+  }
+
+  async refreshToken(user: User) {
+    const payload = {
+      username: user.email,
+      sub: {
+        name: user.name,
+      },
+    };
+    return {
+      accessToken: this.jwtService.sign(payload),
     };
   }
 }
