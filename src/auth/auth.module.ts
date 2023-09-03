@@ -7,10 +7,10 @@ import { LocalStrategy } from './strategies/local-strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
 import { JwtStrategy } from './strategies/jwt-strategy';
-import { RefreshJwtGuard } from './guards/refresh-jwt-auth.guard';
+import { RefreshJwtStrategy } from './strategies/refreshToken.strategy';
 
 @Module({
-  providers: [AuthService, UserService, LocalStrategy, UserService, JwtStrategy, RefreshJwtGuard],
+  providers: [AuthService, UserService, LocalStrategy, UserService, JwtStrategy, RefreshJwtStrategy],
   controllers: [AuthController],
   imports: [
     TypeOrmModule.forFeature([User]),
